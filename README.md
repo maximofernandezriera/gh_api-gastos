@@ -12,8 +12,8 @@ Este proyecto es una API en Laravel  para la gestión de gastos personales. Perm
 
 1. Clona el repositorio:
     ```sh
-    git clone "https://github.com/SwagDAWnDual/api-gestion-gastos-mcanadas-dawi.git"
-    cd api-gestion-gastos-mcanadas-dawi/GastosApi
+    git clone "https://github.com/maximofernandezriera/gh_api-gastos"
+    cd api-gestion-gastos/GastosApi
     ```
 
 2. Instala las dependencias de PHP:
