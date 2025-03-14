@@ -10,7 +10,7 @@ class GastoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api'); 
     }
 
     // 📌 Listar todos los gastos del usuario autenticado

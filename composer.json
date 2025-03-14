@@ -1,0 +1,15 @@
+{
+    "name": "maximo/api-gestion-gastos",
+    "autoload": {
+        "psr-4": {
+            "Maximo\\ApiGestionGastos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "maximofernandezriera",
+            "email": "maxfernandez@gmail.com" 
+        }
+    ],
+    "require": {}
+}

@@ -13,7 +13,7 @@ class GastoFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(), // Crea un usuario automáticamente
+            'user_id' => User::factory(),  // Crea un usuario automáticamente
             'description' => $this->faker->sentence(),
             'amount' => $this->faker->randomFloat(2, 1, 500), // Genera un monto entre 1 y 500
             'category' => $this->faker->randomElement([

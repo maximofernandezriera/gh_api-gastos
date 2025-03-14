@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Gasto extends Model
 {
-    use HasFactory;
+    use HasFactory;  
 
     protected $fillable = ['user_id', 'description', 'amount', 'category'];
 
