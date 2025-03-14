@@ -1,57 +1,32 @@
-services:
-  # Servidor PHP per a Laravel
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: laravel_app
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/var/www
-    networks:
-      - laravel_network
-    depends_on:
-      - db
-    environment:
-      - DB_CONNECTION=mysql
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_DATABASE=laravel
-      - DB_USERNAME=root
-      - DB_PASSWORD=root
+# Imatge base de PHP amb Nginx
+FROM php:8.4-fpm
 
-  # Base de dades MySQL
-  db:
-    image: mysql:5.7
-    container_name: mysql_db
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - laravel_network
+# Instal·lem dependències per a PHP i altres eines necessàries
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    git \
+    unzip \
+    sqlite3 \
+    libsqlite3-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_sqlite
 
-  # phpMyAdmin per gestionar la base de dades
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "8080:80"
-    networks:
-      - laravel_network
-    depends_on:
-      - db
+# Instal·lem Composer per gestionar les dependències de Laravel
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-networks:
-  laravel_network:
-    driver: bridge
+# Configuració del directori de treball
+WORKDIR /var/www
 
-volumes:
-  db_data:
-    driver: local
+# Copiem els arxius de l'aplicació dins del contenidor
+COPY . .
+
+# Instal·lem les dependències de Laravel amb Composer
+RUN composer install --no-dev --optimize-autoloader
+
+# Exposem el port en el qual Laravel està corrent (per defecte, 8000)
+EXPOSE 8000
+
+# Comandament per iniciar el servidor Laravel
+CMD ["php-fpm"]
