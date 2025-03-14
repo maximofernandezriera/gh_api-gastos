@@ -431,32 +431,3 @@ Ahora vamos a crear nuestro primer gasto:
     "message": "El Gasto \"Potitos\" ha sido eliminado correctamente"
 }
 ```
-## Ejecutar Tests
-
-Para ejecutar los tests, utiliza el siguiente comando:
-```sh
-php artisan test
-```
-
-### Descripción de los Tests Unitarios
-
-#### Test de Creación de Usuario
-- **Método:** `test_user_creation`
-- **Descripción:** Este test verifica que un usuario puede ser creado correctamente en la base de datos. Utiliza una fábrica para crear un usuario con un nombre, correo electrónico y contraseña específicos. Luego, verifica que el usuario ha sido registrado en la base de datos comprobando la existencia del correo electrónico.
-
-#### Test de Creación de Gasto
-- **Método:** `test_gasto_creation`
-- **Descripción:** Este test verifica que un gasto puede ser creado correctamente en la base de datos. Primero, crea un usuario utilizando una fábrica. Luego, crea un gasto asociado a ese usuario con una descripción, monto y categoría específicos. Finalmente, verifica que el gasto ha sido registrado en la base de datos comprobando la existencia de la descripción del gasto.
-
-#### Test de Actualización de Gasto
-- **Método:** `test_gasto_update`
-- **Descripción:** Este test verifica que un gasto puede ser actualizado correctamente en la base de datos. Primero, crea un usuario y un gasto asociado utilizando fábricas. Luego, actualiza la descripción, monto y categoría del gasto. Finalmente, verifica que los cambios han sido registrados en la base de datos comprobando la nueva descripción, monto y categoría del gasto.
-
-#### Test de Eliminación de Gasto
-- **Método:** `test_gasto_deletion`
-- **Descripción:** Este test verifica que un gasto puede ser eliminado correctamente de la base de datos. Primero, crea un usuario y un gasto asociado utilizando fábricas. Luego, elimina el gasto. Finalmente, verifica que el gasto ha sido eliminado de la base de datos comprobando la ausencia de la descripción del gasto.
-
-Estos tests aseguran que las operaciones básicas de creación, actualización y eliminación de usuarios y gastos funcionan correctamente en tu aplicación.
-
-**Podrás encontrar estos test en:** `/tests/Feature/ExampleFeatureTest.php`  
-**Podrás encontrar las fábricas en:** `database/factories`
